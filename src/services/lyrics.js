@@ -17,20 +17,23 @@ const get = (lyricsRef) => (req, res, next)=>{
 
 const insert = (lyricsRef) => (req, res, next)=>{
   res.setHeader("content-type", "application/json");
-  lyricsRef.child(req.body.id).set(req.body)
+  lyricsRef.push(req.body)
     .then((response)=>res.send(response))
     .catch(err => res.send(err));
 }
 
 const update = (lyricsRef) => (req, res, next)=>{
   res.setHeader("content-type", "application/json");
-  lyricsRef.child(req.body.id).set(req.body)
+  lyricsRef.child(req.params.id).set(req.body)
     .then((response)=>res.send(response))
     .catch(err => res.send(err));
 }
 
 const remove = (lyricsRef) => (req, res, next)=>{
-  return res.send({hola: "mundo"});
+  res.setHeader("content-type", "application/json");
+  lyricsRef.child(req.params.id).remove()
+    .then((response)=>res.send(response))
+    .catch(err => res.send(err));
 }
 
 module.exports={
