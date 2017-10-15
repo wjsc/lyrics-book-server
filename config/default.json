@@ -1,0 +1,11 @@
+{
+  "server":{
+    "name": "lyrics-book-server",
+    "port": "3000",
+    "version":"1.0.0"
+  },
+  "firebase":{
+    "databaseURL":"https://.firebaseio.com/",
+    "secretKeyPath":""
+  }
+}

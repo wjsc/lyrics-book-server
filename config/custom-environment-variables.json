@@ -1,0 +1,11 @@
+{
+  "server":{
+    "name": "SERVER_NAME",
+    "port": "SERVER_PORT",
+    "version": "SERVER_VERSION"
+  },
+  "firebase":{
+    "databaseURL": "FIREBASE_DATABASE_URL",
+    "secretKeyPath": "FIREBASE_SECRET_KEY_PATH"
+  }
+}
