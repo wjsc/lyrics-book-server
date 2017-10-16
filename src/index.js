@@ -1,6 +1,7 @@
 process.env.NODE_CONFIG_DIR= __dirname +"/../config";
 const config = require("config");
 const restify = require("restify");
+const corsMiddleware = require("restify-cors-middleware")
 const firebaseAdmin = require("firebase-admin");
 const serviceAccount = require(config.get("firebase.secretKeyPath"));
 const lyricsRouter = require (__dirname+"/routers/lyrics.js");
@@ -17,9 +18,19 @@ const server = restify.createServer({
   version: config.get("server.version")
 });
 
+
+const cors = corsMiddleware({
+ preflightMaxAge: 5, //Optional 
+ origins: ["http://localhost:3001"],
+ allowHeaders: ["Access-Control-Allow-Origin"]
+})
+
 server.use(restify.plugins.acceptParser(server.acceptable));
 server.use(restify.plugins.queryParser());
 server.use(restify.plugins.bodyParser());
+server.pre(cors.preflight)
+server.use(cors.actual)
+
 lyricsRouter(server, db.ref("lyrics"));
 
 server.listen(config.get("server.port"), function () {
