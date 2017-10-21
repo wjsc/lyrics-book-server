@@ -22,7 +22,7 @@ const server = restify.createServer({
 const cors = corsMiddleware({
  preflightMaxAge: 5,  
  origins: config.get("server.origins"),
- allowHeaders: ["Access-Control-Allow-Origin"]
+ allowHeaders: ["Access-Control-Allow-Origin", "Authorization"]
 })
 
 server.use(restify.plugins.acceptParser(server.acceptable));
